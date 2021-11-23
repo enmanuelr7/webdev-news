@@ -15,6 +15,7 @@ const article = ({ article }) => {
   );
 };
 
+// Server Side Rendering
 // export const getServerSideProps = async (context) => {
 //   const res = await fetch(
 //     `https://jsonplaceholder.typicode.com/posts/${context.params.id}`
@@ -27,6 +28,7 @@ const article = ({ article }) => {
 //   };
 // };
 
+// Static Site Genetarion
 export const getStaticProps = async (context) => {
   const res = await fetch(
     `https://jsonplaceholder.typicode.com/posts/${context.params.id}`
@@ -39,6 +41,7 @@ export const getStaticProps = async (context) => {
   };
 };
 
+// Static Site Genetarion
 export const getStaticPaths = async () => {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
   const articles = await res.json();
