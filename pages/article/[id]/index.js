@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { baseUrl } from "../../../config";
 // import { useRouter } from "next/router";
 
 const article = ({ article }) => {
@@ -29,10 +30,35 @@ const article = ({ article }) => {
 // };
 
 // Static Site Genetarion
+// export const getStaticProps = async (context) => {
+//   const res = await fetch(
+//     `https://jsonplaceholder.typicode.com/posts/${context.params.id}`
+//   );
+//   const article = await res.json();
+//   return {
+//     props: {
+//       article,
+//     },
+//   };
+// };
+
+// Static Site Genetarion
+// export const getStaticPaths = async () => {
+//   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+//   const articles = await res.json();
+//   const paths = articles.map((article) => ({
+//     params: { id: article.id.toString() },
+//   }));
+
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// };
+
+// Use API Routes
 export const getStaticProps = async (context) => {
-  const res = await fetch(
-    `https://jsonplaceholder.typicode.com/posts/${context.params.id}`
-  );
+  const res = await fetch(`${baseUrl}/api/articles/${context.params.id}`);
   const article = await res.json();
   return {
     props: {
@@ -41,9 +67,9 @@ export const getStaticProps = async (context) => {
   };
 };
 
-// Static Site Genetarion
+// Use API Routes
 export const getStaticPaths = async () => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const res = await fetch(`${baseUrl}/api/articles`);
   const articles = await res.json();
   const paths = articles.map((article) => ({
     params: { id: article.id.toString() },
